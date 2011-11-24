@@ -1,0 +1,67 @@
+<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+
+/**
+ * TYPOlight webCMS
+ * Copyright (C) 2005-2009 Leo Feyer
+ *
+ * This program is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation, either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this program. If not, please visit the Free
+ * Software Foundation website at http://www.gnu.org/licenses/.
+ *
+ * PHP version 5
+ * @copyright  Yanick Witschi 2010 
+ * @author     Yanick Witschi <yanick.witschi@certo-net.ch> 
+ * @package    CustomBEModule 
+ * @license    LGPL 
+ * @filesource
+ */
+
+
+/**
+ * Class CustomBEModule 
+ *
+ * @copyright  Yanick Witschi 2010 
+ * @author     Yanick Witschi <yanick.witschi@certo-net.ch> 
+ * @package    Controller
+ */
+class CustomBEModule extends Backend
+{
+	/**
+	 * Initialize the object
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+	}
+	
+	
+	/**
+	 * Redirects the module to where it should
+	 */
+	protected function generate()
+	{
+ 		$objFW = $this->Database->prepare("SELECT forwardto FROM tl_custombemodule WHERE tabname=?")
+								->limit(1)
+								->execute($this->Input->get('do'));
+		
+		$strRedirect = $this->Environment->script . '?' . $objFW->forwardto;
+
+		$this->Import('String');
+		$strRedirect = $this->String->decodeEntities($strRedirect);
+		
+		$this->redirect($strRedirect);
+	}
+
+}
+
+?>
