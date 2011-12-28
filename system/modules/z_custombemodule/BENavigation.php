@@ -61,9 +61,9 @@ class BENavigation extends Backend
 	public function outputBackendTemplate($strContent, $strTemplate)
 	{
 		// fix installation bug
-		if (!$this->Database->fieldExists('modulesToHide', 'tl_user_group'))
+		if (!$this->Database->fieldExists('custombemodules_modulesToHide', 'tl_user_group'))
 		{
-			return;
+			return $strContent;
 		}
 		
 		if ($strTemplate == 'be_main')
@@ -113,7 +113,7 @@ class BENavigation extends Backend
 		$objModules = $this->Database->prepare("SELECT * FROM tl_custombemodule WHERE type='link'")->execute();
 		if (!$objModules->numRows)
 		{
-			return;
+			return $strContent;
 		}
 		
 		$strJS = '<script>' . "\n";
