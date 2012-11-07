@@ -30,7 +30,7 @@
 $GLOBALS['BE_MOD']['system']['custombemodule'] = array
 (
 	'tables'       		=> array('tl_custombemodule'),
-	'icon'         		=> 'system/modules/z_custombemodule/html/icon.png',
+	'icon'         		=> 'system/modules/z_custombemodule/assets/icon.png',
 	'generateModules'   => array('ConfigWriter', 'doUpdate')
 );
 

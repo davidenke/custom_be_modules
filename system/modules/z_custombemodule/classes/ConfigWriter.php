@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
  * TYPOlight webCMS
@@ -28,13 +28,19 @@
 
 
 /**
+ * Run in a custom namespace, so the class can be replaced
+ */
+namespace Contao;
+
+
+/**
  * Class ConfigWriter 
  *
  * @copyright  Yanick Witschi 2010 
  * @author     Yanick Witschi <yanick.witschi@certo-net.ch> 
  * @package    Controller
  */
-class ConfigWriter extends Backend
+class ConfigWriter extends \Backend
 {
 	/**
 	 * Contains the prepared string for the config.php
@@ -146,7 +152,16 @@ class ConfigWriter extends Backend
 									 
 		while($objModules->next())
 		{
-			$strIconUrl = ($objModules->iconUrl != '') ? $objModules->iconUrl : 'system/modules/z_custombemodule/html/standard.png';
+			if (is_numeric($objModules->iconUrl))
+			{
+				$objFile = \FilesModel::findByPk($objModules->iconUrl);
+				//print_r($this->Database->execute("SELECT path FROM tl_files WHERE id=" . $objModules->iconUrl)->path);
+				$strIconUrl = $objFile->path;
+			}
+			else
+			{
+				$strIconUrl = ($objModules->iconUrl != '') ? $objModules->iconUrl : 'system/modules/z_custombemodule/assets/standard.png';
+			}
 			
 			if($objModules->specialplace < 1)
 			{

@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
  * TYPOlight webCMS
@@ -28,13 +28,19 @@
 
 
 /**
+ * Run in a custom namespace, so the class can be replaced
+ */
+namespace Contao;
+
+
+/**
  * Class BENavigation 
  *
  * @copyright  Yanick Witschi 2010 
  * @author     Yanick Witschi <yanick.witschi@certo-net.ch> 
  * @package    Controller
  */
-class BENavigation extends Backend
+class BENavigation extends \Backend
 {
 	/**
 	 * Modules to hide

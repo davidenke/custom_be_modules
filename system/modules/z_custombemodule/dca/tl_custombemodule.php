@@ -69,7 +69,7 @@ $GLOBALS['TL_DCA']['tl_custombemodule'] = array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_custombemodule']['generateModules'],
 				'href'                => 'key=generateModules',
-				'attributes'          => 'onclick="Backend.getScrollOffset();" style="-moz-background-clip:border;-moz-background-inline-policy:continuous;-moz-background-origin:padding;background:transparent url(system/modules/z_custombemodule/html/go.png) no-repeat scroll left center;padding:2px 0 3px 20px;"'
+				'attributes'          => 'onclick="Backend.getScrollOffset();" style="-moz-background-clip:border;-moz-background-inline-policy:continuous;-moz-background-origin:padding;background:transparent url(system/modules/z_custombemodule/assets/go.png) no-repeat scroll left center;padding:2px 0 3px 20px;"'
 			),
 			'all' => array
 			(
@@ -112,7 +112,7 @@ $GLOBALS['TL_DCA']['tl_custombemodule'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'__selector__'                => array('specialplace','type'),
+		'__selector__'                => array('type','specialplace'),
 		'default'                     => '{custombemodule_legend},module_name,language,type;',
 		'group'						  => '{custombemodule_legend},module_name,language,type,group_position,beforeOrafter;',
 		'module'					  => '{custombemodule_legend},module_name,language,type,descr,iconUrl,forwardto,addtogroup,specialplace;',
